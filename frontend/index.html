@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading App</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!--définition de API_URL avant le chargement de app.js -->
+    <script>
+        window.API_URL = window.location.hostname.includes("localhost")
+            ? "http://127.0.0.1:5000/books"
+            : "http://192.168.67.2:31598/books";  //permet de remplacer par mon IP Minikube et mon NodePort 
+        console.log("🔍 API_URL défini dans index.html :", window.API_URL);
+    </script>
+</head>
+<body>
+    <h1>Ma Bibliothèque de Lecture</h1>
+
+    <div id="add-book">
+        <h2>Ajouter un livre</h2>
+        <input type="text" id="title" placeholder="Titre du livre" required>
+        <input type="text" id="author" placeholder="Auteur" required>
+        <input type="number" id="rating" placeholder="Note (1 à 5)" min="1" max="5" required>
+        <textarea id="comment" placeholder="Votre commentaire"></textarea>
+        <button onclick="addBook()">Ajouter</button>
+    </div>
+
+    <h2>Liste des livres lus</h2>
+    <ul id="book-list"></ul>
+
+    <!--chargement de app.js après que le DOM soit prêt -->
+    <script src="app.js" defer></script>
+</body>
+</html>
